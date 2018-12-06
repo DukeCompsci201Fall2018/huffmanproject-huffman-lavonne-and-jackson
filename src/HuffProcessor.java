@@ -145,7 +145,7 @@ public class HuffProcessor {
 		 
 		while (true) {
 			if (current == null) return;
-			int bits = in.readBits(1);
+			int bits = in.readBits(BITS_PER_WORD);
 			if (bits == -1) {
 				throw new HuffException("bad input, no PSEUDO_EOF");
 			}
