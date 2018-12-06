@@ -142,8 +142,9 @@ public class HuffProcessor {
 	private void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out) {
 			// TODO Auto-generated method stub
 		HuffNode current = root;
-		if (current == null) return; 
+		 
 		while (true) {
+			if (current == null) return;
 			int bits = in.readBits(1);
 			if (bits == -1) {
 				throw new HuffException("bad input, no PSEUDO_EOF");
