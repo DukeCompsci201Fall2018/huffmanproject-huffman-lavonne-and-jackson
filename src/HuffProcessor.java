@@ -141,7 +141,8 @@ public class HuffProcessor {
 			}
 	private void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out) {
 			// TODO Auto-generated method stub
-		HuffNode current = root; 
+		HuffNode current = root;
+		if (current == null) return; 
 		while (true) {
 			int bits = in.readBits(1);
 			if (bits == -1) {
