@@ -144,7 +144,7 @@ public class HuffProcessor {
 		HuffNode current = root; 
 		while (true) {
 			int bits = in.readBits(1);
-			if (bits == 1) {
+			if (bits == -1) {
 				throw new HuffException("bad input, no PSEUDO_EOF");
 			}
 			else {
