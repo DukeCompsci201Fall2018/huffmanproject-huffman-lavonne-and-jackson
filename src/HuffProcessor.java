@@ -167,10 +167,10 @@ public class HuffProcessor {
 			
 		}
 	private HuffNode readTreeHeader(BitInputStream in) {
-			if (in.readBits(1) == -1) {
+			if (in.readBits(BITS_PER_WORD) == -1) {
 				throw new HuffException("failed to read bit");								
 			}
-			if (in.readBits(1) == 0) {
+			if (in.readBits(BITS_PER_WORD) == 0) {
 				HuffNode left = readTreeHeader(in);
 				HuffNode right = readTreeHeader(in);
 				return new HuffNode(0,0,left,right);
