@@ -3,6 +3,7 @@ import java.util.TreeMap;
 
 // Lavonne Hoang
 // Jackson Hubbard
+
 /**
  * Although this class has a history of several years,
  * it is starting from a blank-slate, new and clean implementation
@@ -34,6 +35,7 @@ public class HuffProcessor {
 	
 	public HuffProcessor(int debug) {
 		myDebugLevel = debug;
+		
 	}
 
 	/**
@@ -79,6 +81,7 @@ public class HuffProcessor {
 		// TODO Auto-generated method stub
 		if (root == null) return;
 		if (root.myLeft == null && root.myRight == null) {
+			
 			out.writeBits(1, 1);
 			out.writeBits(BITS_PER_WORD+1, root.myValue);
 			return;
@@ -106,6 +109,7 @@ public class HuffProcessor {
 
 	private String[] makeCodingsFromTree(HuffNode root) {
 		// TODO Auto-generated method stub
+		
 		String[] encodings = new String[ALPH_SIZE +1];
 		codingHelper(root, "", encodings);
 		
@@ -161,6 +165,8 @@ public class HuffProcessor {
 				throw new HuffException("illegal header starts with " + bits);
 			}
 			
+		
+			
 			HuffNode root = readTreeHeader(in);
 			readCompressedBits(root,in,out);
 			out.close();
@@ -171,7 +177,13 @@ public class HuffProcessor {
 		 
 		while (true) {
 			
+			
 			int bits = in.readBits(1);
+			
+			// check to make value is changing each time (0's change to 1's) in order to confirm we read bits correctly
+			if(myDebugLevel  == 4) {
+				System.out.println("decoding " + bits);
+			}
 			
 			if (bits == -1) {
 				throw new HuffException("bad input, no PSEUDO_EOF");
